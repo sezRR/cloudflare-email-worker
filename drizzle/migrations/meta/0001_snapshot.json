@@ -1,0 +1,55 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "5b8c60d8-fa66-4b26-8a5f-5a834e3c60bc",
+  "prevId": "48aab180-11c5-43ca-8fe5-133aaba022a6",
+  "tables": {
+    "customers": {
+      "name": "customers",
+      "columns": {
+        "customer_id": {
+          "name": "customer_id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "company_name": {
+          "name": "company_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "contact_name": {
+          "name": "contact_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {
+      "\"Customers\"": "\"customers\""
+    },
+    "columns": {
+      "\"customers\".\"CustomerId\"": "\"customers\".\"customer_id\"",
+      "\"customers\".\"CompanyName\"": "\"customers\".\"company_name\"",
+      "\"customers\".\"ContactName\"": "\"customers\".\"contact_name\""
+    }
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

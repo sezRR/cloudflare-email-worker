@@ -1,0 +1,29 @@
+{
+	"name": "d1-tutorial",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"test": "vitest",
+		"cf-typegen": "wrangler types",
+		"db:generate": "drizzle-kit generate",
+		"db:migrate:local": "wrangler d1 migrations apply prod-d1-tutorial --local",
+		"db:migrate:remote": "wrangler d1 migrations apply prod-d1-tutorial --remote",
+		"db:seed:local": "wrangler d1 execute prod-d1-tutorial --local --file=./seed.sql",
+		"db:seed:remote": "wrangler d1 execute prod-d1-tutorial --remote --file=./seed.sql",
+		"db:studio": "drizzle-kit studio"
+	},
+	"devDependencies": {
+		"@cloudflare/vitest-plugin": "^1.0.0",
+		"@types/node": "^26.6.2",
+		"drizzle-kit": "^0.31.11",
+		"typescript": "^5.5.2",
+		"vitest": "~4.1.0",
+		"wrangler": "^4.137.0"
+	},
+	"dependencies": {
+		"drizzle-orm": "^0.45.3"
+	}
+}
