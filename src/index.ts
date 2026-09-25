@@ -1,17 +1,23 @@
 import { eq } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/d1';
+import { Hono } from 'hono';
 import * as schema from './db/schema';
+import { runScheduledJob } from './cron';
+
+const app = new Hono<{ Bindings: Env }>();
+
+app.get('/api/beverages', async (c) => {
+	const db = drizzle(c.env.prod_d1_tutorial, { schema });
+	const results = await db.select().from(schema.customers).where(eq(schema.customers.companyName, 'Bs Beverages'));
+	return c.json(results);
+});
+
+app.get('*', (c) => c.text('Call /api/beverages to see everyone who works at Bs Beverages'));
 
 export default {
-	async fetch(request, env): Promise<Response> {
-		const { pathname } = new URL(request.url);
-		const db = drizzle(env.prod_d1_tutorial, { schema });
+	fetch: app.fetch,
 
-		if (pathname === '/api/beverages') {
-			const results = await db.select().from(schema.customers).where(eq(schema.customers.companyName, 'Bs Beverages'));
-			return Response.json(results);
-		}
-
-		return new Response('Call /api/beverages to see everyone who works at Bs Beverages');
+	async scheduled(controller, env, ctx): Promise<void> {
+		ctx.waitUntil(runScheduledJob(controller, env));
 	},
 } satisfies ExportedHandler<Env>;
