@@ -12,7 +12,10 @@
 	},
 	"upload_source_maps": true,
 	"triggers": {
-		"crons": ["0 0 * * *"],
+		"crons": ["0 * * * *"],
+	},
+	"secrets": {
+		"required": ["TYPESAFE_AI_API_KEY", "GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET", "GOOGLE_REFRESH_TOKEN", "RUN_TOKEN"],
 	},
 	"d1_databases": [
 		{

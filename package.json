@@ -24,6 +24,7 @@
 		"wrangler": "^4.137.0"
 	},
 	"dependencies": {
+		"@typesafe-ai/sdk": "^0.5.7",
 		"drizzle-orm": "^0.45.3",
 		"hono": "^4.13.9"
 	}
