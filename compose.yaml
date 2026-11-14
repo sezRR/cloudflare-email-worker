@@ -1,0 +1,15 @@
+# One-shot job: it labels what is new and exits. The host's cron starts it every hour with
+#   docker compose run --rm labeller
+services:
+  labeller:
+    build: .
+    env_file: .env
+    # Wins over .env: a STATE_PATH set there for runs outside Docker would point at a folder
+    # the container's unprivileged user cannot write to, instead of the volume below.
+    environment:
+      STATE_PATH: /data/state.json
+    volumes:
+      - labeller-data:/data
+
+volumes:
+  labeller-data:
